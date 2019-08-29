@@ -4,7 +4,6 @@
 
 let givenArray = [1,2,4,591,392,391,2,5,10,2,1,1,1,20,20,"a","green","dog","b","a"];
 
-
 const cleanRoom = (inputArray) =>{
 
     //*Variables initialized*
@@ -26,11 +25,11 @@ const cleanRoom = (inputArray) =>{
     const isNotString = val => (typeof val) != "string"; //returns all nonstring values 
 
     //function that cleans up arrays by converting length-1 subarrays into their corresponding value (i.e. [3] to 3)
-    const oneLengthArrayRemover = (array) => { 
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].length === 1) array[i] = array[i][0];
-        }
-        return array;
+    const oneLengthArrayRemover = (array) => {
+        return array.map((ele) => {
+            if (ele.length === 1) { return ele[0]; }
+            else {return ele;}
+        })
     }
 
     //The main function: takes elements out of inputted array in order, pushing them together into one array element (outputSubarray) for the final output
@@ -48,7 +47,7 @@ const cleanRoom = (inputArray) =>{
 
             processingArray = processingArray.filter(isDifferent); //remove current nextValue elements from processing array
         } 
-        oneLengthArrayRemover(outputSubarray); // converts arrays with a single element to that element's value, then returns this final output
+        outputSubarray =  oneLengthArrayRemover(outputSubarray); // converts arrays with a single element to that element's value, then returns this final output
 
         return outputSubarray;
     }
